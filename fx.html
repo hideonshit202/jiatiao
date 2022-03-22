@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+
+<head>
+	<meta name="theme-color" content="#ededed">
+	<meta name="format-detection" content="telephone=no">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Document</title>
+</head>
+<script>
+    //时间生成
+    let now = new Date();
+    let year = now.getFullYear() + '/';
+    let month = now.getMonth() + 1;
+    let date1 = now.getDate();
+    let date2 = now.getDate();
+    let hour1 = now.getHours();
+    let hour2 = now.getHours() + 2;
+    let min = now.getMinutes();
+    let sec = now.getSeconds();
+    if (hour1 < 0) {
+        hour1 = hour1 + 24;
+        date1 = date1 - 1;
+    }
+    if (hour1 < 10) {
+        hour1 = '0' + hour1;
+    }
+    if (hour2 > 24) {
+        hour2 = hour2 - 24;
+        date2 = date2 + 1;
+    }
+    if (min < 10) {
+        min = '0' + min;
+    }
+    if (sec < 10) {
+        sec = '0' + sec;
+    }
+    let timer1 = year + month + '/' + date1 + ' ' + hour1 + ':00:00';
+    let timer2 = year + month + '/' + date2 + ' ' + hour2 + ':00:00';
+    let timer3 = hour1 + ':' + min;
+    let timer4 = year + month + '/' + date1 + ' ' + ' ' + hour1 + ':' + min + ':' + sec;
+</script>
+<script>
+    //名字生成
+    let firstName = ['李', '王', '张', '刘', '陈', '杨', '赵', '黄', '周', '吴'];
+    let lastName = ['奕辰', '沐宸', '凯霖', '明', '宸', '浩宇', '雨泽', '子轩', '浩然', '子涵'];
+    let nameIndex1 = Math.floor((Math.random() * 10));
+    let nameIndex2 = Math.floor((Math.random() * 10));
+    let name = firstName[nameIndex1] + lastName[nameIndex2];
+
+
+    let tel = Math.floor((Math.random() * 20000000000) + 1);
+
+    //宿舍生成
+    let dormitory = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+    let dormitoryNum = Math.floor((Math.random() * 5) + 1) * 100 + Math.floor((Math.random() * 15) + 1);
+    let dormitoryIndex = Math.floor((Math.random() * 7));
+    let dom = '南海' + dormitory[dormitoryIndex] + '座' + dormitoryNum;
+
+    //学号生成
+    
+
+    //手机号生成
+    var numArray = new Array("139", "138", "137", "136", "135", "134", "159", "158", "157", "150", "151", "152", "188", "187", "182", "183", "184", "178", "130", "131", "132", "156", "155", "186", "185", "176", "133", "153", "189", "180", "181", "177");  //这是目前找到的除了数据卡外的手机卡前三位，类型是字符串数组
+    var numList = "";  //创建一个数组用来存放10个手机号
+    var arraryLength = numArray.length;  //获取数组长度，这样如果手机号前三位取值单位发生变化，在下一步求i的地方就不用修改随机数取值范围了
+    for (var n = 0; n < 1; n++) {
+        var i = parseInt(Math.random() * arraryLength); //注意乘以的是上面numArray数组的长度，这样就可以取出数组中的随机一个数。random的取值范围是大于等于0.0，小于1.0，相乘后得到的就是0到（数组长度-1）的值。
+        var num = numArray[i];  //取出随机的手机号前三位并赋值给num，手机号前三位是字符串类型的
+        for (var j = 0; j < 8; j++) {
+            num = num + Math.floor(Math.random() * 10);   //num是字符串，后面的数字被当做字符串。所以变成两个字符串拼接了
+        }
+        if (n == 0) {
+            numList = numList + num;  //第一个手机号前不出现“，”
+        }
+        else { numList = numList + "," + num; }  //从第一个手机号后面到最后一个之前用逗号分隔
+    }
+
+    //let arr = { '2005': '软件学院', '2031': '软件学院', '3501': '城市文化学院','3502': '城市文化学院','3633':'国际商学院','3634':'国际商学院','3602':'国际商学院','4001':'人工智能学院','3902':'电子与信息工程学院' };
+    //let key=arr['2005'];
+    let stu={0:{'num':'2005','school':'软件学院'},
+             1:{'num':'2031','school':'软件学院'},
+             2:{'num':'3501','school':'城市文化学院'},
+             3:{'num':'3502','school':'城市文化学院'},
+             4:{'num':'3633','school':'国际商学院'},
+             5:{'num':'3634','school':'国际商学院'},
+             6:{'num':'3602','school':'国际商学院'},
+             7:{'num':'4001','school':'人工智能学院'},
+             8:{'num':'3902','school':'电子与信息工程学院'},
+             9:{'num':'3711','school':'职业教育学院'}
+            }
+    let randomStu = Math.floor(Math.random() * 10)
+    let key=stu[randomStu].num;
+    let school=stu[randomStu].school;
+    let stuNum = "2020" +key+"0"+ Math.floor((Math.random() * 100) + 1);
+
+    //一个小函数
+    function edit() {
+        //var x = document.getElementsByClassName("text");
+        var x=document.getElementsByTagName("body");
+        for (i = 0; i < x.length; i++){
+            if (x[i].contentEditable == "true") {
+                x[i].contentEditable = "false";
+            }
+            else {
+                x[i].contentEditable = "true";
+            }
+        }
+    }
+    var string0 = "门岗：南海校区北门</br>" +
+        "角色：学生</br>" +
+        "学号：" + stuNum + "</br>" +
+        "姓名：" + name + "</br>" +
+        "校区：南海</br>" +
+        "单位："+school+"</br>" +
+        "电话："+numList+"</br>" +
+        "宿舍：" + dom + "</br>" +
+        "时间：" + "2022/2/18 17:14:51" + "</br>" +
+        "———</br>" +
+        "(o^^o)欢迎回家</br>"+
+        "核准批次：2022春218</br>" +
+        "核准时间：16:00</br>"+
+        "入校校门：南海校区：正门</br>"+
+        "来源地区：广东广州</br>"+
+        "</br>" +
+        "【可通行】批准返校</br>" +
+        "</br>" +
+        "疫情防控关键时期，在校学生未经</br>" +
+        "学校同意不得进出校园。";
+
+    var string1 = "门岗：南海校区北门</br>" +
+        "角色：学生</br>" +
+        "学号：" + stuNum + "</br>" +
+        "姓名：" + name + "</br>" +
+        "校区：南海</br>" +
+        "单位："+school+"</br>" +
+        "电话："+numList+"</br>" +
+        "宿舍：" + dom + "</br>" +
+        "时间：" + "2022/2/19 11:14:51" + "</br>" +
+        "———</br>" +
+        "</br>" +
+        "【可通行】批准请假</br>" +
+        "</br>" +
+        "疫情防控关键时期，在校学生未经</br>" +
+        "学校同意不得进出校园。";
+
+    var string2 = "门岗：南海校区北门</br>" +
+        "角色：学生</br>" +
+        "学号：" + stuNum + "</br>" +
+        "姓名：" + name + "</br>" +
+        "校区：南海</br>" +
+        "单位："+school+"</br>" +
+        "电话："+numList+"</br>" +
+        "宿舍：" + dom + "</br>" +
+        "时间：" + "2022/2/25 19:26:27" + "</br>" +
+        "———</br>" +
+        "</br>" +
+        "【可通行】批准请假</br>" +
+        "</br>" +
+        "疫情防控关键时期，在校学生未经</br>" +
+        "学校同意不得进出校园。";
+
+    var string3 = "门岗：南海校区北门</br>" +
+        "角色：学生</br>" +
+        "学号：" + stuNum + "</br>" +
+        "姓名：" + name + "</br>" +
+        "校区：南海</br>" +
+        "单位："+school+"</br>" +
+        "电话："+numList+"</br>" +
+        "宿舍：" + dom + "</br>" +
+        "时间：" + timer4 + "</br>" +
+        "———</br>" +
+        "</br>" +
+        "【可通行】批准请假</br>" +
+        "</br>" +
+        "疫情防控关键时期，在校学生未经</br>" +
+        "学校同意不得进出校园。";
+</script>
+<style>
+    @font-face {
+        font-family: mFont;
+        src: url('小米兰亭加粗.ttf');
+    }
+
+    body {
+        font-family: "mFont"
+    }
+
+    .time {
+        text-align: center;
+        font-size: 30px;
+        color: rgba(0, 0, 0, .3);
+        letter-spacing: .15rem;
+        margin: 50px auto;
+    }
+
+    .header {
+        position: fixed;
+        top: 0px;
+        z-index: 1;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: -5px;
+        z-index: 1;
+    }
+
+    .gap {
+        height: 96px;
+    }
+
+    .message-item {
+        width: 100%;
+        display: flex;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    .avatar {
+        width: 108px;
+        height: 108px;
+        margin-left: 32px;
+        margin-right: 32px;
+        border-radius: 15px;
+    }
+
+    .bubble {
+        word-break: break-all;
+        border-radius: 15px;
+        font-size: 44px;
+        line-height: 1.4em;
+        padding: 10px;
+        color: black;
+        background: rgb(254, 255, 255);
+        position: relative;
+    }
+
+    .bubble:before {
+        content: '';
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 36px;
+        left: -32px;
+        border: solid 18px;
+        border-color: transparent rgba(254, 255, 255) transparent transparent;
+        font-size: 0;
+    }
+
+    .text {
+        margin: 25px;
+    }
+</style>
+
+<body>
+    <div style="width: 1080px; height: 5150px;background-color:#ededed">
+        <div class="header">
+            <img src="TOP-2.png">
+        </div>
+        <div class="gap"></div>
+
+         <!-- 第0段 -->
+         <div class="time">
+            <script>document.write("2月18日 上午17:14");</script>
+        </div>
+        <div class="message-item">
+            <img class="avatar" src="icon.jpg" alt="left person avatar">
+            <div class="bubble">
+                <div class="text">
+                    <script>document.write(string0);</script>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第一段 -->
+        <div class="time">
+            <script>document.write("2月19日 上午11:14");</script>
+        </div>
+        <div class="message-item">
+            <img class="avatar" src="icon.jpg" alt="left person avatar">
+            <div class="bubble">
+                <div class="text">
+                    <script>document.write(string1);</script>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二段 -->
+        <div class="time">
+            <script>document.write("2月25日 下午19:26");</script>
+        </div>
+        <div class="message-item">
+            <img class="avatar" src="icon.jpg" alt="left person avatar">
+            <div class="bubble">
+                <div class="text">
+                    <script>document.write(string2);</script>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三段 -->
+        <div class="time">
+            <script>document.write(timer3);</script>
+        </div>
+        <div class="message-item">
+            <img class="avatar" src="icon.jpg" alt="left person avatar">
+            <div class="bubble">
+                <div class="text">
+                    <!-- 门岗：南海校区北门</br>
+                    角色：学生</br>
+                    学号：</br>
+                    姓名：</br>
+                    校区：</br>
+                    单位：城市文化学院</br>
+                    电话：</br>
+                    宿舍：</br>
+                    时间：</br>
+                    ———</br>
+                    </br>
+                    【可通行】批准请假</br>
+                    </br>
+                    疫情防控关键时期，在校学生未经</br>
+                    学校同意不得进出校园。 -->
+                    <script>document.write(string3);</script>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <img src="DOWN.png" onclick='edit()'>
+        </div>
+
+    </div>
+</body>
+
+</html>
